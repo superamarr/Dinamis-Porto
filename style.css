@@ -1,0 +1,607 @@
+body, html, #app {
+  margin: 0;
+  width: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  touch-action: auto;
+  overflow-x: hidden;
+  background: #0b0f1a;
+}
+
+#app {
+  font-family: "Barlow Condensed", sans-serif;
+}
+
+#app a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  z-index: 10;
+}
+
+h1, h2, p, .links a {
+  margin: 0;
+  padding: 0;
+  color: white;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 1);
+  line-height: 1.2;
+  user-select: none;
+  text-align: center;
+}
+
+h1, h2, .links a {
+  font-family: "Barlow Condensed", sans-serif;
+}
+
+h1 {
+  font-size: 72px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0px;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+h2 {
+  font-size: 72px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0px;
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+h1 span.outline, h2 span.outline {
+  color: transparent;
+  -webkit-text-stroke: 2.5px white;
+  text-shadow: none;
+  font-weight: 800;
+}
+
+p {
+  font-size: 25px;
+  font-weight: 400;
+  margin-bottom: 32px;
+  line-height: 1.6;
+  letter-spacing: 0.3px;
+}
+
+.links {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+}
+
+.links a {
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: lowercase;
+  letter-spacing: 0.5px;
+  transition: opacity 0.3s ease;
+}
+
+.links a:hover {
+  opacity: 0.7;
+}
+
+/* ─── Floating top navbar (glass) ─── */
+.topnav {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  padding: 10px 16px;
+  z-index: 100;
+  background: rgba(10, 10, 20, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 14px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+  transform: translate(-50%, -140%);
+  transition: transform 0.35s ease;
+  width: max-content;
+}
+
+.topnav.show {
+  transform: translate(-50%, 0);
+}
+
+.topnav nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.topnav nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* ─── Scroll indicator ─── */
+.scroll-indicator {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  z-index: 10;
+}
+
+.scroll-indicator span {
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-right: 2.5px solid rgba(255, 255, 255, 0.8);
+  border-bottom: 2.5px solid rgba(255, 255, 255, 0.8);
+  transform: rotate(45deg);
+  animation: scrollBounce 1.5s ease infinite;
+}
+
+.scroll-indicator span:nth-child(1) { animation-delay: 0s;    opacity: 0.3; }
+.scroll-indicator span:nth-child(2) { animation-delay: 0.2s;  opacity: 0.6; }
+.scroll-indicator span:nth-child(3) { animation-delay: 0.4s;  opacity: 1;   }
+
+@keyframes scrollBounce {
+  0%   { transform: rotate(45deg) translate(0, 0); }
+  50%  { transform: rotate(45deg) translate(5px, 5px); }
+  100% { transform: rotate(45deg) translate(0, 0); }
+}
+
+.scroll-indicator.hide {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+/* ─── Bento / dot-grid menu button ─── 
+.bento-btn {
+  position: fixed;
+  top: 24px;
+  right: 28px;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: repeat(3, 8px);
+  grid-template-rows: repeat(3, 8px);
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 10px;
+  transition: background 0.2s ease;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+}
+
+.bento-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.bento-btn span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+  display: block;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+  transform-origin: center;
+}
+
+.bento-btn.active span {
+  transform: scale(0);
+  opacity: 0;
+}
+
+.bento-btn::before,
+.bento-btn::after {
+  content: '';
+  position: absolute;
+  width: 26px;
+  height: 2.5px;
+  background: white;
+  border-radius: 2px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scaleX(0) rotate(45deg);
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+  opacity: 0;
+}
+
+.bento-btn::after {
+  transform: translate(-50%, -50%) scaleX(0) rotate(-45deg);
+}
+
+.bento-btn.active::before {
+  transform: translate(-50%, -50%) scaleX(1) rotate(45deg);
+  opacity: 1;
+}
+
+.bento-btn.active::after {
+  transform: translate(-50%, -50%) scaleX(1) rotate(-45deg);
+  opacity: 1;
+}
+
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: rgba(10, 10, 20, 0.92);
+  backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.nav-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.nav-overlay ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.nav-overlay ul li {
+  overflow: hidden;
+}
+
+.nav-overlay ul li a {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 72px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: white;
+  text-decoration: none;
+  letter-spacing: 2px;
+  display: inline-block;
+  transition: color 0.3s ease, letter-spacing 0.3s ease;
+}
+
+.nav-overlay ul li a:hover {
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 6px;
+}
+*/
+
+/* ─── Canvas ─── */
+#canvas {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ─── About Section ─── */
+.about {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10%;
+  gap: 50px;
+  z-index: 10;
+}
+
+.about-content {
+  flex: 1;
+  max-width: 600px;
+  --about-offset: 140px;
+}
+
+.about-content .section-title {
+  font-size: 80px;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  text-align: left;
+  line-height: 1;
+  color: white;
+  font-family: "Barlow Condensed", sans-serif;
+}
+
+.about-content hr {
+  border: 0;
+  height: 2px;
+  background: white;
+  margin-bottom: 30px;
+  width: calc(100% + var(--about-offset));
+  margin-left: calc(-1 * var(--about-offset));
+}
+
+.about-content p {
+  text-align: left;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  letter-spacing: 0.5px;
+}
+
+.about-skills {
+  display: block;
+  margin-top: 12px;
+}
+
+.about-skills .skill-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.about-skills .skill-label {
+  font-size: 16px;
+  color: white;
+  text-align: left;
+}
+
+.about-skills .skill-value {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.about-skills .progress {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.25);
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.about-skills .progress-bar {
+  background: white;
+  display: block;
+  height: 100%;
+}
+
+.about-content p,
+.about-skills {
+  margin-left: calc(-1 * var(--about-offset));
+}
+
+@media (max-width: 900px) {
+  .about-content hr {
+    width: 100%;
+    margin-left: 0;
+  }
+  .about-content p,
+  .about-skills {
+    margin-left: 0;
+  }
+}
+
+.resume-link {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  text-transform: lowercase;
+  color: white;
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: opacity 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.resume-link:hover {
+  opacity: 0.7;
+}
+
+.about-image {
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: -80px;
+}
+
+.about-image .photo-card {
+  position: relative;
+  width: 75%;
+  max-width: 300px;
+  height: 400px;
+  /* From https://css.glass */
+  background: rgba(255, 251, 251, 0.05);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(11.5px);
+  -webkit-backdrop-filter: blur(11.5px);
+  border: 1px solid rgba(255, 251, 251, 0.02);
+  box-sizing: border-box;
+  z-index: 0;
+  margin-top: 30px;
+}
+
+.profile-photo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 75%;
+  max-width: 300px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  z-index: 1;
+  margin-top: -105px;
+}
+
+/* ─── Experience Section ─── */
+.experience {
+  position: relative;
+  padding: 24px 10% 40px;
+  z-index: 10;
+}
+
+.experience-content {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.experience-content .section-title {
+  font-size: 56px;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  text-align: left;
+  line-height: 1;
+  color: white;
+  font-family: "Barlow Condensed", sans-serif;
+}
+
+.experience-content hr {
+  border: 0;
+  height: 2px;
+  background: white;
+  margin-bottom: 12px;
+  width: 100%;
+}
+
+.exp-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.exp-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.exp-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  color: white;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.exp-org {
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 2px;
+  font-size: 14px;
+}
+
+.exp-desc {
+  color: white;
+  margin-top: 4px;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+/* ─── Certificates Section ─── */
+.certificates {
+  position: relative;
+  padding: 24px 10% 60px;
+  z-index: 10;
+}
+
+.cert-content {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.cert-content .section-title {
+  font-size: 56px;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  text-align: left;
+  line-height: 1;
+  color: white;
+  font-family: "Barlow Condensed", sans-serif;
+}
+
+.cert-content hr {
+  border: 0;
+  height: 2px;
+  background: white;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.cert-card {
+  background: rgba(255, 251, 251, 0.05);
+  border: 1px solid rgba(255, 251, 251, 0.12);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.cert-img {
+  display: block;
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.cert-meta {
+  padding: 12px;
+  display: grid;
+  gap: 6px;
+}
+
+.cert-title { color: white; font-weight: 700; font-size: 18px; }
+.cert-issuer { color: rgba(255, 255, 255, 0.85); font-size: 14px; }
+.cert-date { color: rgba(255, 255, 255, 0.7); font-size: 13px; }
+.cert-link { align-self: start; color: white; text-decoration: none; font-weight: 600; font-size: 14px; opacity: 0.9; }
+.cert-link:hover { opacity: 0.7; }
+
+@media (max-width: 1100px) { .cert-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 700px) {
+  .cert-content .section-title { font-size: 44px; }
+  .cert-grid { grid-template-columns: 1fr; }
+}
