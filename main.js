@@ -1,7 +1,3 @@
-// Licence CC BY-NC-SA 4.0
-// Attribution — You must give appropriate credit.
-// Non Commercial — You may not use the material for commercial purposes.
-
 import TubesCursor from "https://cdn.jsdelivr.net/npm/threejs-components@0.0.19/build/cursors/tubes1.min.js"
 
 let app
@@ -22,29 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 })
 
-/*
-// Bento menu toggle
-const bentoBtn = document.getElementById('bentoBtn')
-const navOverlay = document.getElementById('navOverlay')
-
-bentoBtn.addEventListener('click', (e) => {
-  e.stopPropagation()
-  bentoBtn.classList.toggle('active')
-  navOverlay.classList.toggle('open')
-})
-
-// Close overlay when clicking on a nav link
-navOverlay.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    bentoBtn.classList.remove('active')
-    navOverlay.classList.remove('open')
-  })
-})
-*/
-
 document.body.addEventListener('click', (e) => {
-  // Don't change colors when clicking bento or nav (uncomment if using bento nav)
-  // if (e.target.closest('.bento-btn') || e.target.closest('.nav-overlay')) return
   const colors = randomColors(3)
   const lightsColors = randomColors(3)
   console.log(colors, lightsColors)
