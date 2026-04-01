@@ -38,6 +38,10 @@ porto/
 
 Bagian pembuka website yang langsung menyambut pengunjung dengan efek visual dramatis berbasis 3D.
 
+| 📸 Tampilan (Screenshot) |
+| :---: |
+| <img width="1352" height="678" alt="image" src="https://github.com/user-attachments/assets/00c6e5fa-0f1c-4ffe-8d24-b5530ad43d8d" /> |
+
 **Kode:**
 
 ```html
@@ -118,6 +122,9 @@ h1 span.outline, h2 span.outline {
 
 Navigasi *floating* bergaya *glassmorphism* yang tersembunyi di awal, serta indikator animasi panah gulir di bawah layar.
 
+| 📸 Tampilan (Screenshot) |
+| :---: |
+| <img width="246" height="93" alt="image" src="https://github.com/user-attachments/assets/d00e74aa-71d3-415c-9c35-fae7ad5491a8" /> <img width="346" height="57" alt="image" src="https://github.com/user-attachments/assets/43933dbf-eccb-4113-ba4f-2e08256bfaa6" /> |
 
 **Kode:**
 
@@ -186,6 +193,9 @@ window.addEventListener('scroll', () => {
 
 Bagian pengenalan diri yang memuat foto profil dengan efek *glassmorphism card* dan progress bar skill yang dirender secara reaktif oleh Vue.js.
 
+| 📸 Tampilan (Screenshot) |
+| :---: |
+| <img width="1353" height="675" alt="image" src="https://github.com/user-attachments/assets/31da8c9e-37ea-46e3-b274-ed4a3b911846" /> |
 
 **Kode:**
 
@@ -279,6 +289,9 @@ vueApp.mount('#app')
 
 Daftar riwayat pengalaman profesional dan akademis berbentuk *list* yang ditulis statis.
 
+| 📸 Tampilan (Screenshot) |
+| :---: |
+| <img width="1351" height="681" alt="image" src="https://github.com/user-attachments/assets/a36a4a08-be80-46b1-9eb0-2f50ff4e39d2" /> |
 
 **Kode:**
 
@@ -331,6 +344,9 @@ Daftar riwayat pengalaman profesional dan akademis berbentuk *list* yang ditulis
 
 Galeri sertifikat berbentuk kartu responsif yang dirender secara dinamis oleh Vue.js.
 
+| 📸 Tampilan (Screenshot) |
+| :---: |
+| <img width="1352" height="681" alt="image" src="https://github.com/user-attachments/assets/535c81c4-9713-4250-b4e5-e2a1bcb552fc" /> |
 
 **Kode:**
 
