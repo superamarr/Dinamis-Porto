@@ -17,7 +17,7 @@ body {
   font-family: "Barlow Condensed", sans-serif;
 }
 
-#app a {
+#app a:not(.btn) {
   text-decoration: none;
   color: #fff;
 }
@@ -314,19 +314,115 @@ p {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 10%;
-  gap: 50px;
+  justify-content: center;
+  padding: 80px 10%;
   z-index: 10;
 }
 
-.about-content {
-  flex: 1;
-  max-width: 600px;
-  --about-offset: 140px;
+.about-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 60px;
+  width: 100%;
+  max-width: 1200px;
 }
 
-.about-content .section-title {
+/* ─── ASIDE: Profile photo & biodata ─── */
+.profile-aside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  flex-shrink: 0;
+  width: 280px;
+}
+
+.aside-photo-wrap {
+  position: relative;
+  width: 230px;
+  height: 280px;
+}
+
+.aside-photo-wrap .photo-card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 251, 251, 0.05);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(11.5px);
+  -webkit-backdrop-filter: blur(11.5px);
+  border: 1px solid rgba(255, 251, 251, 0.1);
+  top: 12px;
+  left: 12px;
+}
+
+.aside-photo-wrap .profile-photo {
+  position: absolute;
+  top: 11px;
+  left: 16px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  z-index: 1;
+}
+
+.aside-bio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+}
+
+.aside-name {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: white !important;
+  margin: 0 !important;
+  line-height: 1.3 !important;
+}
+
+.aside-role {
+  font-size: 13px !important;
+  color: rgba(255, 255, 255, 0.75) !important;
+  margin: 0 !important;
+  line-height: 1.4 !important;
+}
+
+.aside-location {
+  font-size: 13px !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+  margin: 0 !important;
+}
+
+.aside-dicoding {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: white !important;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 6px 14px;
+  text-decoration: none;
+  transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+.aside-dicoding:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ─── ARTICLE: About content ─── */
+.about-article {
+  flex: 1;
+  --about-offset: 0px;
+}
+
+.about-article .section-title {
   font-size: 80px;
   font-weight: 800;
   text-transform: uppercase;
@@ -337,27 +433,36 @@ p {
   font-family: "Barlow Condensed", sans-serif;
 }
 
-.about-content hr {
+.about-article hr {
   border: 0;
   height: 2px;
   background: white;
   margin-bottom: 30px;
-  width: calc(100% + var(--about-offset));
-  margin-left: calc(-1 * var(--about-offset));
+  width: 100%;
 }
 
-.about-content p {
+.about-article p {
   text-align: left;
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 400;
   line-height: 1.6;
-  margin-bottom: 40px;
-  letter-spacing: 0.5px;
+  margin-bottom: 32px;
+  letter-spacing: 0.4px;
 }
 
 .about-skills {
   display: block;
   margin-top: 12px;
+}
+
+/* ─── Skills grid (pengganti Bootstrap row/col) ─── */
+.skills-grid {
+  margin: 0;
+}
+
+.skill-item {
+  flex: 1 1 calc(50% - 6px);
+  min-width: 160px;
 }
 
 .about-skills .skill-header {
@@ -392,77 +497,56 @@ p {
   height: 100%;
 }
 
-.about-content p,
-.about-skills {
-  margin-left: calc(-1 * var(--about-offset));
-}
-
 @media (max-width: 900px) {
-  .about-content hr {
+  .about-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .profile-aside {
     width: 100%;
-    margin-left: 0;
   }
-  .about-content p,
-  .about-skills {
-    margin-left: 0;
+  .about-article .section-title {
+    font-size: 52px;
   }
 }
 
-.resume-link {
-  font-family: "Barlow Condensed", sans-serif;
-  font-size: 24px;
+/* ─── Dicoding link in nav ─── */
+.topnav nav a.dicoding-link {
+  color: rgba(255, 220, 100, 0.9);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  transition: opacity 0.2s ease;
+}
+
+.topnav nav a.dicoding-link:hover {
+  opacity: 0.75;
+}
+
+/* ─── Footer ─── */
+.site-footer {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 28px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.site-footer p {
+  font-size: 14px !important;
+  color: rgba(255, 255, 255, 0.55) !important;
+  margin: 0 !important;
+  letter-spacing: 0.5px;
+}
+
+.site-footer a {
+  color: rgba(255, 220, 100, 0.85);
   font-weight: 600;
-  text-transform: lowercase;
-  color: white;
   text-decoration: none;
-  letter-spacing: 1px;
-  transition: opacity 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
+  transition: opacity 0.2s ease;
 }
 
-.resume-link:hover {
+.site-footer a:hover {
   opacity: 0.7;
-}
-
-.about-image {
-  flex: 1;
-  position: relative;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin-top: -80px;
-}
-
-.about-image .photo-card {
-  position: relative;
-  width: 75%;
-  max-width: 300px;
-  height: 400px;
-  /* From https://css.glass */
-  background: rgba(255, 251, 251, 0.05);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(11.5px);
-  -webkit-backdrop-filter: blur(11.5px);
-  border: 1px solid rgba(255, 251, 251, 0.02);
-  box-sizing: border-box;
-  z-index: 0;
-  margin-top: 30px;
-}
-
-.profile-photo {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 75%;
-  max-width: 300px;
-  height: auto;
-  object-fit: cover;
-  border-radius: 8px;
-  z-index: 1;
-  margin-top: -105px;
 }
 
 /* ─── Experience Section ─── */
@@ -564,13 +648,16 @@ p {
   width: 100%;
 }
 
-.cert-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+/* ─── Certificates grid (pengganti Bootstrap row/col) ─── */
+.certs-grid {
+  margin: 0;
 }
 
 .cert-card {
+  box-sizing: border-box;
+  width: calc(33.333% - 11px);
+  flex: 0 0 calc(33.333% - 11px);
+  max-width: calc(33.333% - 11px);
   background: rgba(255, 251, 251, 0.05);
   border: 1px solid rgba(255, 251, 251, 0.12);
   border-radius: 12px;
@@ -600,8 +687,39 @@ p {
 .cert-link { align-self: start; color: white; text-decoration: none; font-weight: 600; font-size: 14px; opacity: 0.9; }
 .cert-link:hover { opacity: 0.7; }
 
-@media (max-width: 1100px) { .cert-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 700px) {
   .cert-content .section-title { font-size: 44px; }
-  .cert-grid { grid-template-columns: 1fr; }
+  .cert-card {
+    width: 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .skill-item { flex: 1 1 100%; }
 }
+
+/* ─── Bootstrap-friendly hover effects (cards + navbar) ─── */
+.topnav nav a:hover {
+  opacity: 0.7;
+}
+
+.hover-card {
+  background: rgba(255, 251, 251, 0.05) !important;
+  border: 1px solid rgba(255, 251, 251, 0.12) !important;
+  border-radius: 12px !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.hover-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+  border-color: rgba(255, 255, 255, 0.22) !important;
+}
+
+.hover-card .card-img-top {
+  height: 160px;
+  object-fit: cover;
+}
+

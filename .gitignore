@@ -1,0 +1,10 @@
+# Env / secrets
+.env
+
+# Logs
+*.log
+
+# OS files
+Thumbs.db
+Desktop.ini
+

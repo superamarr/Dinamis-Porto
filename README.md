@@ -21,7 +21,7 @@ Ini adalah website portofolio interaktif dan modern yang saya kembangkan untuk m
 
 ```
 porto/
-├── index.html       # Struktur utama halaman
+├── index.php        # Struktur utama halaman
 ├── main.js          # Logika JavaScript & inisialisasi Vue / TubesCursor
 ├── style.css        # Seluruh styling dan animasi kustom
 └── assets/
@@ -38,14 +38,10 @@ porto/
 
 Bagian pembuka website yang langsung menyambut pengunjung dengan efek visual dramatis berbasis 3D.
 
-| 📸 Tampilan (Screenshot) |
-| :---: |
-| *(Tambahkan screenshot Hero Section di sini)* |
-
 **Kode:**
 
 ```html
-<!-- index.html -->
+<!-- index.php -->
 <canvas id="canvas"></canvas>
 
 <div class="hero">
@@ -122,14 +118,11 @@ h1 span.outline, h2 span.outline {
 
 Navigasi *floating* bergaya *glassmorphism* yang tersembunyi di awal, serta indikator animasi panah gulir di bawah layar.
 
-| 📸 Tampilan (Screenshot) |
-| :---: |
-| *(Tambahkan screenshot Navbar & Scroll Indicator di sini)* |
 
 **Kode:**
 
 ```html
-<!-- index.html -->
+<!-- index.php -->
 <header class="topnav" id="topnav">
   <nav>
     <ul>
@@ -193,14 +186,11 @@ window.addEventListener('scroll', () => {
 
 Bagian pengenalan diri yang memuat foto profil dengan efek *glassmorphism card* dan progress bar skill yang dirender secara reaktif oleh Vue.js.
 
-| 📸 Tampilan (Screenshot) |
-| :---: |
-| *(Tambahkan screenshot About Section di sini)* |
 
 **Kode:**
 
 ```html
-<!-- index.html — Struktur About dengan Vue Directives -->
+<!-- index.php — Struktur About dengan Vue Directives -->
 <div class="about" id="about">
   <div class="container">
     <div class="row align-items-center">
@@ -289,14 +279,11 @@ vueApp.mount('#app')
 
 Daftar riwayat pengalaman profesional dan akademis berbentuk *list* yang ditulis statis.
 
-| 📸 Tampilan (Screenshot) |
-| :---: |
-| *(Tambahkan screenshot Experience Section di sini)* |
 
 **Kode:**
 
 ```html
-<!-- index.html — Struktur Experience List -->
+<!-- index.php — Struktur Experience List -->
 <div class="experience" id="experience">
   <div class="experience-content">
     <h2 class="section-title">EXPERIENCE</h2>
@@ -344,14 +331,11 @@ Daftar riwayat pengalaman profesional dan akademis berbentuk *list* yang ditulis
 
 Galeri sertifikat berbentuk kartu responsif yang dirender secara dinamis oleh Vue.js.
 
-| 📸 Tampilan (Screenshot) |
-| :---: |
-| *(Tambahkan screenshot Certificates Section di sini)* |
 
 **Kode:**
 
 ```html
-<!-- index.html — Struktur Certificate Cards dengan Vue -->
+<!-- index.php — Struktur Certificate Cards dengan Vue -->
 <div class="certificates" id="certificates">
   <div class="cert-content container">
     <h2 class="section-title">CERTIFICATES</h2>
